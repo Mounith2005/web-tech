@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="mode-btn" onclick="toggleMode()">🌙</button>
+
+    <div class="container">
+        <h2>Your Cart</h2>
+        <div class="cart">
+            <h3>🛒 Cart Details</h3>
+            <ul id="cartList"></ul>
+            <p><b>Total Advance: ₹<span id="totalAdvance">0</span></b></p>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            <button class="reset-btn" onclick="resetCart()">Reset Cart</button> <!-- Reset Button -->
+        </div>
+
+        <div class="summary" id="summarySection">
+            <h3>Booking Summary</h3>
+            <p id="summaryDetails"></p>
+            <button class="checkout-btn" onclick="confirmBooking()">Confirm Booking</button>
+        </div>
+
+        <div class="bill" id="billSection">
+            <h3>Pre-Booking Receipt</h3>
+            <p id="billDetails"></p>
+            <button class="print-btn" onclick="printBill()">🖨️ Print Bill</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between light and dark mode
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+            document.body.classList.toggle("light-mode");
+
+            // Save mode preference
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("mode", "dark");
+                document.querySelector(".mode-btn").innerHTML = "☀️";
+            } else {
+                localStorage.setItem("mode", "light");
+                document.querySelector(".mode-btn").innerHTML = "🌙";
+            }
+        }
+
+        // Sample cart structure with customer information
+        let cart = JSON.parse(localStorage.getItem("cart")) || [
+            
+        ];
+
+        function updateCart() {
+            let cartList = document.getElementById("cartList");
+            let totalAdvance = 0;
+            cartList.innerHTML = "";  // Clear the cart list before updating
+
+            // Iterate through the cart and display each customer's details
+            cart.forEach((item, index) => {
+                totalAdvance += parseInt(item.advance);
+                let listItem = document.createElement("li");
+                listItem.classList.add("cart-item");
+                listItem.innerHTML = `<b>${item.name}</b> (${item.phone}) - ${item.model} - ₹${item.advance}`;
+                cartList.appendChild(listItem);
+            });
+
+            document.getElementById("totalAdvance").innerText = totalAdvance;
+        }
+
+        function checkout() {
+            let summaryText = "";
+            cart.forEach(item => {
+                summaryText += `<b>Customer:</b> ${item.name} <br><b>Phone:</b> ${item.phone} <br><b>Tractor:</b> ${item.model} <br><b>Advance:</b> ₹${item.advance} <br><br>`;
+            });
+            summaryText += "<b>Total Advance:</b> ₹" + document.getElementById("totalAdvance").innerText;
+            document.getElementById("summaryDetails").innerHTML = summaryText;
+            document.getElementById("summarySection").style.display = "block";
+        }
+
+        function confirmBooking() {
+            document.getElementById("billDetails").innerHTML = document.getElementById("summaryDetails").innerHTML;
+            document.getElementById("billSection").style.display = "block";
+        }
+
+        function printBill() {
+            window.print();
+        }
+
+        // Function to reset the cart
+        function resetCart() {
+            localStorage.removeItem("cart");  // Clear cart from localStorage
+            cart = [];  // Clear the cart array in JavaScript
+            updateCart();  // Update the UI to reflect the cleared cart
+        }
+
+        // Initialize cart
+        updateCart();
+    </script>
+</body>
+</html>

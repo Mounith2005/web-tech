@@ -1,0 +1,178 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #007bff;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-cart-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.add-cart-btn:hover {
+    background: #138496;
+}
+
+.checkout-btn {
+    background: #28a745;
+    color: white;
+}
+
+.checkout-btn:hover {
+    background: #218838;
+}
+.reset-btn {
+    background: #c01313;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #218838;
+}
+
+.cart {
+    background: #f8f9fa;
+    padding: 1px;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.cart-item {
+    font-size: 14px;
+    line-height: 15px;
+    height: 70px;
+    background: rgb(47, 221, 76);
+    padding: 10px; /* Adjust padding for better spacing */
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.remove-btn {
+    background: red;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.remove-btn:hover {
+    background: darkred;
+}
+
+.summary, .bill {
+    display: none;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.print-btn {
+    background: #007bff;
+    color: white;
+}
+
+.print-btn:hover {
+    background: #0056b3;
+}
+
+/* Dark Mode Styles */
+.light-mode {
+    background: #ffffff;
+    color: #000000;
+}
+
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .container, 
+.dark-mode .cart, 
+.dark-mode .summary, 
+.dark-mode .bill {
+    background: #222;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode input, 
+.dark-mode select {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.dark-mode button {
+    border: 1px solid #555;
+}
+
+.dark-mode .remove-btn {
+    background: #ff5555;
+}
+
+/* Mode toggle button */
+button.mode-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    background: #4f550c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button.mode-btn:hover {
+    background: #25ab11;
+}
+
+/* Cart Item Styles */
+.cart-item {
+    font-size: 14px;
+    line-height: 20px; /* Fixed missing line-height */
+}
